@@ -9,17 +9,10 @@ namespace Assignment4.Entities
         public int TagID { get; set; }
 
         [Required]
-        //[Index(IsUnique = true)]
+        [Key]
         [StringLength(50)]
         public string Name { get; set; }
 
-        //public IList<TaskTag> TaskTags { get; set; }
-        //public ICollection<Task> Tasks { get; set; }
-
-        /*
-        Id : int
-        Name : string(50), required, unique
-        Tasks : many-to-many reference to Task entity
-        */
+        public List<Task> Tasks { get; set; }
     }
 }

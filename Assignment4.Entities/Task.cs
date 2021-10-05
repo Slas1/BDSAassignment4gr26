@@ -7,6 +7,7 @@ namespace Assignment4.Entities
 {
     public class Task
     {
+        public int TaskID { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -19,27 +20,11 @@ namespace Assignment4.Entities
         [Required]
         public State State { get; set; }
 
-        //public IList<TaskTag> TaskTags { get; set; }
-        // public ICollection<Tag> Tags { get; set; }
-
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder
-                .Entity<Task>()
-                .Property(e => e.State)
-                .HasConversion<string>();
-        }
-        */
-
-
-        /*
-        Id : int
-        Title : string(100), required
-        AssignedTo : optional reference to User entity
-        Description : string(max), optional
-        State : enum (New, Active, Resolved, Closed, Removed), required
-        Tags : many-to-many reference to Tag entity
-        */
+        public List<Tag> Tags { get; set; }
     }
+
+    public enum State 
+        {
+             New, Active, Resolved, Closed, Removed
+        }
 }

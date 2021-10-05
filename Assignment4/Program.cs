@@ -3,9 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Lecture04.Entities;
+using Assignment4.Entities;
 
 namespace Assignment4
 {
@@ -14,23 +15,15 @@ namespace Assignment4
         static void Main(string[] args)
         {
             var configuration = LoadConfiguration();
-            var connectionString = configuration.GetConnectionString("Futurama");
+            var connectionString = "Server=localhost;Database=Kanban;User Id=sa;Password=ea07a0f7-3ff7-4344-88c3-029d9f805fba"; //configuration.GetConnectionString("Kanban");
 
-            Console.WriteLine("Hello World!");
+            var optionsBuilder = new DbContextOptionsBuilder<KanbanContext>().UseSqlServer(connectionString);
+            using var context = new KanbanContext(optionsBuilder.Options);
             
-            var connection = new SqlConnection(connectionString);
-
-            // var cmdText = "SELECT * FROM Users";
-
-            var command = new SqlCommand(cmdText, connection);
-
-            connection.Open();
-
-            // open up command and get reader 
-            var reader = command.ExecuteReader();
-
-            connection.Close();
+            KanbanContextFactory.Seed(context);
         }
+
+        // Server=localhost;Database=Kanban;User Id=sa;Password=ea07a0f7-3ff7-4344-88c3-029d9f805fba
 
         static IConfiguration LoadConfiguration()
         {
