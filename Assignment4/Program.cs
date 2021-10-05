@@ -34,6 +34,9 @@ namespace Assignment4
 
             return builder.Build();
         }
-
+        /* TODO:
+            - Kunne indsætte data i databasen (få seed() til at virke)
+            - Opgave 6
+        */
     }
 }
