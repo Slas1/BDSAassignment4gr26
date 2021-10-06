@@ -25,7 +25,7 @@ namespace Assignment4
             KanbanContextFactory.Seed(context);
             // context.SaveChanges();
         }
-
+        
         // Server=localhost;Database=Kanban;User Id=sa;Password=ea07a0f7-3ff7-4344-88c3-029d9f805fba
 
         static IConfiguration LoadConfiguration()
