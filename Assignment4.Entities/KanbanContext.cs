@@ -17,11 +17,15 @@ public class KanbanContext : DbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<Task>()
-                .Property(e => e.State)
+            .Entity<Task>(entity =>
+            {
+                entity.Property(e => e.State)
                 .HasConversion(
                     v => v.ToString(),
                     v => (State)Enum.Parse(typeof(State), v));
+                entity.HasMany(e => e.Tags).WithMany(e => e.Tasks);
+                });
+
         }
     }
 }
