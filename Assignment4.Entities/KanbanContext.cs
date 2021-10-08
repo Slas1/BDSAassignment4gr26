@@ -25,7 +25,6 @@ public class KanbanContext : DbContext
                     v => (State)Enum.Parse(typeof(State), v));
                 entity.HasMany(e => e.Tags).WithMany(e => e.Tasks);
                 });
-
         }
     }
 }
