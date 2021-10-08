@@ -14,6 +14,8 @@ namespace Assignment4.Core
         /// <returns>The id of the newly created task</returns>
         int Create(TaskDTO task);
 
+        TaskDetailsDTO Read(int id); // Added
+
         void Delete(int taskId);
 
         TaskDetailsDTO FindById(int id);

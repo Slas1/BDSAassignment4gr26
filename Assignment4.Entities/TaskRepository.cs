@@ -1,6 +1,8 @@
 namespace Assignment4.Entities
 {
-    public class TaskRepository
+    public class TaskRepository : ITaskRepository
     {
+        
+
     }
 }
