@@ -1,8 +1,6 @@
 using System;
-// using Assignment4.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
-using System.Collections.Generic;
 
 namespace Assignment4.Entities
 {
