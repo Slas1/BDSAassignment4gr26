@@ -2,6 +2,7 @@ using Assignment4.Core;
 
 namespace Assignment4.Entities
 {
+    /*
     public class UserRepository
     {
         (Response Response, int UserId) Create(UserCreateDTO user);
@@ -10,4 +11,5 @@ namespace Assignment4.Entities
         Response Update(UserUpdateDTO user);
         Response Delete(int userId, bool force = false);
     }
+    */
 }

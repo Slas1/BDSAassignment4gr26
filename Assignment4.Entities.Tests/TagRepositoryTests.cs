@@ -1,9 +1,12 @@
 using System;
-using Assignment4.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.Sqlite;
+using Xunit;
+using Assignment4.Core;
 
 namespace Assignment4.Entities.Tests
 {
-    public class TagRepositoryTests
+    public class TagRepositoryTests : IDisposable
     {
         private readonly KanbanContext _context;
         private readonly TagRepository _repo;
@@ -13,25 +16,26 @@ namespace Assignment4.Entities.Tests
             connection.Open();
             var builder = new DbContextOptionsBuilder<KanbanContext>();
             builder.UseSqlite(connection);
-            var context = new ComicsContext(builder.Options);
+            var context = new KanbanContext(builder.Options);
             context.Database.EnsureCreated();
-            context.Cities.Add(new tag { Name = "TaggyMcTag" });
-            context.SaveChanges();
+
+            //context.Tag.Add(new Tag {Name = "TaggyMcTag" });
+            //context.SaveChanges();
 
             _context = context;
-            _repo = new CityRepository(_context);
+            _repo = new TagRepository(_context);
         }
 
         [Fact]
-        public void Creates_tag_and_returns_it(){
+        public void Creates_Tag_and_returns_Response_And_ID(){
             //Arrange
-            var tag = new TagCreateDTO("TaggyMissTag");
-
+            var tag = new TagCreateDTO{Name = "TaggyMissTag"};
+            
             //Act
-            var created = _repo.Create(tag)
+            var created = _repo.Create(tag);
             
             //Assert
-            Assert.Equal(new TagDTO(2, "TaggyMissTag"), created);
+            Assert.Equal((Response.Created, 1), created);
         }
 
         [Fact]

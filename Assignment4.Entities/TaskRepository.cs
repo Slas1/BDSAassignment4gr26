@@ -2,6 +2,7 @@ using Assignment4.Core;
 
 namespace Assignment4.Entities
 {
+    /*
     public class TaskRepository : ITaskRepository
     {
         (Response Response, int TaskId) Create(TaskCreateDTO task);
@@ -15,4 +16,5 @@ namespace Assignment4.Entities
         Response Delete(int taskId);
 
     }
+    */
 }
