@@ -1,8 +1,6 @@
 using System;
-// using Assignment4.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
-using System.Collections.Generic;
 
 namespace Assignment4.Entities
 {
@@ -24,7 +22,14 @@ public class KanbanContext : DbContext
                     v => v.ToString(),
                     v => (State)Enum.Parse(typeof(State), v));
                 entity.HasMany(e => e.Tags).WithMany(e => e.Tasks);
-                });
+            });
+
+            modelBuilder.Entity<User>()
+                        .HasIndex(u => u.Email)
+                        .IsUnique();
+
+            modelBuilder.Entity<User>()
+                        .HasKey(u => u.UserID);
         }
     }
 }

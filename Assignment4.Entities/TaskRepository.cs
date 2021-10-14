@@ -2,7 +2,7 @@ using Assignment4.Core;
 
 namespace Assignment4.Entities
 {
-    public class TaskRepository : ITaskRepository
+    public class TaskRepository
     {
         (Response Response, int TaskId) Create(TaskCreateDTO task);
         IReadOnlyCollection<TaskDTO> ReadAll();
