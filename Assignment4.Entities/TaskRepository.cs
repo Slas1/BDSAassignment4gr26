@@ -2,7 +2,8 @@ using Assignment4.Core;
 
 namespace Assignment4.Entities
 {
-    public class TaskRepository
+    /*
+    public class TaskRepository : ITaskRepository
     {
         (Response Response, int TaskId) Create(TaskCreateDTO task);
         IReadOnlyCollection<TaskDTO> ReadAll();
@@ -15,4 +16,5 @@ namespace Assignment4.Entities
         Response Delete(int taskId);
 
     }
+    */
 }
