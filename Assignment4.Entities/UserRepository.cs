@@ -37,10 +37,10 @@ namespace Assignment4.Entities
                 return Response.NotFound;
             }
 
-            if(entity.Tasks[0] != null && force == false)
+            /*if (entity.Tasks.Count() != 0 && force == false)
             {
                 return Response.Conflict;
-            }
+            }*/
 
             _context.User.Remove(entity);
             _context.SaveChanges();
