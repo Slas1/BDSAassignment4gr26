@@ -1,6 +1,7 @@
 using Assignment4.Core;
 using Assignment4.Entities;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Assignment4.Entities
 {
@@ -17,7 +18,7 @@ namespace Assignment4.Entities
             var entity = new Task
             {
                 Title = task.Title,
-                AssignedTo = UserRepository.Read(task.AssignedToId),
+                Description = task.Description,
                 State = State.New,
                 Tags = task.Tags
             };
@@ -31,27 +32,71 @@ namespace Assignment4.Entities
 
         public IReadOnlyCollection<TaskDTO> ReadAll()
         {
-
+            var tasks = from c in _context.Task
+                             select new TaskDTO(
+                                 c.Id,
+                                 c.Title,
+                                 c.AssignedToName,
+                                 c.Tags,
+                                 c.State
+                                );
+            return tasks;
         }
 
         public IReadOnlyCollection<TaskDTO> ReadAllRemoved()
         {
-
+            var tasks = from c in _context.Task
+                            where c.State == State.Removed
+                            select new TaskDTO(
+                                 c.Id,
+                                 c.Title,
+                                 c.AssignedToName,
+                                 c.Tags,
+                                 c.State
+                                );
+            return tasks;
         }
 
         public IReadOnlyCollection<TaskDTO> ReadAllByTag(string tag)
         {
-
+            var tasks = from c in _context.Task
+                             where c.Tags.Contains(tag)
+                             select new TaskDTO(
+                                 c.Id,
+                                 c.Title,
+                                 c.AssignedToName,
+                                 c.Tags,
+                                 c.State
+                                );
+            return tasks;
         }
 
         public IReadOnlyCollection<TaskDTO> ReadAllByUser(int userId)
         {
-
+            var tasks = from c in _context.Task
+                             where c.AssignedTo == _context.User.Find(userId)
+                             select new TaskDTO(
+                                 c.Id,
+                                 c.Title,
+                                 c.AssignedToName,
+                                 c.Tags,
+                                 c.State
+                                );
+            return tasks;
         }
 
         public IReadOnlyCollection<TaskDTO> ReadAllByState(State state)
         {
-
+            var tasks = from c in _context.Task
+                             where c.State == state
+                             select new TaskDTO(
+                                 c.Id,
+                                 c.Title,
+                                 c.AssignedToName,
+                                 c.Tags,
+                                 c.State
+                                );
+            return tasks;
         }
         public TaskDetailsDTO Read(int taskId)
         {
