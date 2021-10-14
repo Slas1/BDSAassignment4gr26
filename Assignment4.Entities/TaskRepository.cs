@@ -116,11 +116,11 @@ namespace Assignment4.Entities
                                  t.TaskID, 
                                  t.Title,
                                  t.Description,
-                                 new DateTime(),
+                                 new DateTime(), //Tom tid nok forkert 
                                  t.AssignedTo.Name, 
                                  new ReadOnlyCollection<string>((from n in t.Tags select n.Name).ToList()), 
                                  (Assignment4.Core.State)t.State,
-                                 new DateTime()
+                                 new DateTime() //Tom Tid nok forkert
                                 );
             return tasks.FirstOrDefault();
         }
